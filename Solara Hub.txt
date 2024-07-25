@@ -1,0 +1,245 @@
+--[[Solara Hub]]--
+--[[EionX制作]]--
+
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Solara Hub",
+    Text = "Loading",
+    Duration = 5, 
+})
+print("已开启防挂机踢出")
+		local vu = game:GetService("VirtualUser")
+		game:GetService("Players").LocalPlayer.Idled:connect(function()
+		   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		   wait(1)
+		   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		end)
+local OrionLib = loadstring(game:HttpGet('https://pastebin.com/raw/SePpsSPZ'))()
+local Window = OrionLib:MakeWindow({Name = "Solara Hub", HidePremium = false, SaveConfig = true,IntroText = "欢迎使用Solara Hub", ConfigFolder = "脚本制作：Eion-X"})
+local about = Window:MakeTab({
+    Name = "Solara Hub",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+about:AddParagraph(""," "..game.Players.LocalPlayer.Name.."")
+Tab:AddButton({
+	Name = "-本脚本为Solara注入器制作-",
+	Callback = function()
+end
+})
+about:AddParagraph("你当前所在服务器的ID"," "..game.GameId.."")
+local Tab = Window:MakeTab({
+  Name = "可用脚本",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+  })
+  
+ Tab:AddButton({
+	Name = "飞行",
+	Callback = function()
+loadstring(game:HttpGet('https://rentry.co/shadiao_yazifly/raw'))()
+end
+})
+
+Tab:AddTextbox({
+	Name = "移动速度修改",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end	 
+})
+
+ Tab:AddTextbox({
+	Name = "跳跃高度修改",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end	 
+})
+
+Tab:AddTextbox({
+	Name = "重力修改",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Workspace.Gravity = Value
+	end
+})
+
+Tab:AddButton({
+	Name = "墙壁行走",
+	Callback = function()
+loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
+end
+})
+
+Tab:AddToggle({
+	Name = "夜视",
+	Default = false,
+	Callback = function(Value)
+		if Value then
+		    game.Lighting.Ambient = Color3.new(1, 1, 1)
+		else
+		    game.Lighting.Ambient = Color3.new(0, 0, 0)
+		end
+	end
+})
+
+
+Tab:AddButton({
+	Name = "ESP",
+	Callback = function()
+	loadstring(game:HttpGet('https://shz.al/hjGS'))()
+	end
+})
+
+Tab:AddButton({
+	Name = "转圈",
+	Callback = function()
+loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
+end
+})
+
+Tab:AddButton({
+    Name="死",
+    Callback=function()
+        game.Players.LocalPlayer.Character.Humanoid.Health=0
+HumanDied = true
+    end
+})
+
+Tab:AddButton({
+	Name = "死不了",
+	Callback = function()
+HumanDied = false
+end
+})
+
+Tab:AddButton({
+	Name = "跟踪玩家",
+	Callback = function()
+      	loadstring(game:HttpGet("https://pastebin.com/raw/F9PNLcXk"))()
+  	end
+})
+
+Tab:AddButton({
+	Name = "人物无敌",
+	Callback = function()
+     loadstring(game:HttpGet('https://pastebin.com/raw/H3RLCWWZ'))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "无敌",
+	Callback = function()
+local lp = game:GetService "Players".LocalPlayer
+if lp.Character:FindFirstChild "Head" then
+    local char = lp.Character
+    char.Archivable = true
+    local new = char:Clone()
+    new.Parent = workspace
+    lp.Character = new
+    wait(2)
+    local oldhum = char:FindFirstChildWhichIsA "Humanoid"
+    local newhum = oldhum:Clone()
+    newhum.Parent = char
+    newhum.RequiresNeck = false
+    oldhum.Parent = nil
+    wait(2)
+    lp.Character = char
+    new:Destroy()
+    wait(1)
+    newhum:GetPropertyChangedSignal("Health"):Connect(
+        function()
+            if newhum.Health <= 0 then
+                oldhum.Parent = lp.Character
+                wait(1)
+                oldhum:Destroy()
+            end
+        end)
+    workspace.CurrentCamera.CameraSubject = char
+    if char:FindFirstChild "Animate" then
+        char.Animate.Disabled = true
+        wait(.1)
+        char.Animate.Disabled = false
+    end
+    lp.Character:FindFirstChild "Head":Destroy()
+end
+end
+})
+
+Tab:AddButton({
+	Name = "通用点击传送工具",
+	Callback = function()
+mouse = game.Players.LocalPlayer:GetMouse()
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "点击传送工具"
+tool.Activated:connect(function()
+local pos = mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+	end
+})
+
+Tab:AddButton({
+	Name = "dex",
+	Callback = function()
+loadstring(game:HttpGet("https://github.com/Hosvile/DEX-Explorer/releases/latest/download/main.lua", true))
+end
+})
+
+Tab:AddButton({
+	Name = "IY管理员",
+	Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end
+})
+
+local Tab = Window:MakeTab({	Name = "关于（必看）",	Icon = "rbxassetid://7734068321",	PremiumOnly = false})
+Tab:AddButton({
+	Name = "脚本制作：Eion-X",
+       Callback = function()
+end
+})
+Tab:AddButton({
+	Name = "网站：eionxrblx.wordpress.com",
+	Callback = function()
+end
+})
+Tab:AddButton({
+	Name = "感谢鸭子和EGOCODE的脚本支持",
+	Callback = function()
+end
+})
+Tab:AddButton({
+	Name = "更多注入器资源在EionX",
+	Callback = function()
+end
+})
+Tab:AddButton({
+	Name = "问题反馈：3850625416",
+	Callback = function()
+end
+})
+Tab:AddButton({
+	Name = "此脚本为Solara的可用脚本合集",
+	Callback = function()
+end
+})
+Tab:AddButton({
+	Name = "感谢你的使用",
+	Callback = function()
+end
+})
+Tab:AddButton({
+	Name = "EionXRBLX.wordprees.com",
+	Callback = function()
+end
+})
